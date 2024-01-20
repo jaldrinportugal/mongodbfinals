@@ -8,19 +8,15 @@ use App\Models\Registration;
 class RegistrationController extends Controller
 {
    
-    // public function index()
-    // {
-    //     $registration = Registration::all();
-    //     return view('aldrin')->with('registration', $registration);
-    // }
-    function index(){
-        // $event = Registration::all();
-        return view('aldrin');
+    public function index()
+    {
+        $registration = Registration::all();
+        return view('aldrin')->with('aldrins', $registration);
     }
 
     function save_registrations(Request $request){
         $validatedData = $request->validate([
-            'ID' => 'integerIncrements',
+            'Id' => 'integerIncrements',
             'eventname' => 'required|string|max:500',
             'date' => 'required|string|max:500',
             'location' => 'required|string|max:500',
@@ -33,13 +29,13 @@ class RegistrationController extends Controller
     }
 
     function delete_registrationss($id){
-        $registrations = registration::find($id);
+        $registrations = registrations::find($id);
         $registrations->delete();
         return back();
     }
 
     function update_registrationss($id){
-        $registrations = registration::find($id);
+        $registrations = registrations::find($id);
         return view('update_registrationss', compact('registrations'));
     }
 

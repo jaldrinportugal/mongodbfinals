@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/',[RegistrationController::class,'index'])->name('aldrin');
+Route::post('/save-registrations',[RegistrationController::class, 'save_registrations'])->name('saveregistration');
+Route::get('/delete-registrations/{id}', [RegistrationController::class, 'delete_registrations'])->name('removeregistrations');
+Route::get('/update-registrations/{id}', [RegistrationController::class, 'update_registrations'])->name('updateregistrations');
+Route::post('/save-updated-registrations', [RegistrationController::class, 'save_updated_registrations'])->name('saveUpdatedregistrations');
